@@ -10,7 +10,9 @@
 - [React Router](https://reactrouter.com/) — SPA routing
 - [Axios](https://axios-http.com/) — HTTP client for API calls
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) — Code formatting & linting
-- State Management: Redux Toolkit
+- [Redux Toolkit](https://redux-toolkit.js.org/) — State management
+- [styled-components](https://styled-components.com/) — CSS-in-JS component styling
+- [TypeScript](https://www.typescriptlang.org/) — Static type system for scalable code
 
 ---
 
