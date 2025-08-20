@@ -116,12 +116,12 @@ const NavItems = () => {
                         className="profile"
                     >
                         <div className="img-container">
-                            (<img
+                            <img
                                 alt="user님의 프로필 사진"
                                 data-testid="user-avatar"
                                 draggable="false"
                                 src={userInfo?.memberImageUrl}
-                            />)
+                            />
                         </div>{isSubnavModalOn && (
                             <SubNav
                                 username={userInfo?.memberUsername}

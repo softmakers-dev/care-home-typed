@@ -84,3 +84,5 @@ const EditItemInput = ( { item, guide }: EditItemProps ) => {
         </Container>
     );
 }
+
+export default EditItemInput;

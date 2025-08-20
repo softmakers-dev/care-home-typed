@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authInfoReducer } from "./ducks/auth/AuthInfoSlice";
 import { editReducer } from "./ducks/edit/editSlice";
+import { modalReducer } from "./ducks/modal/modalSlice";
+import { homeReducer } from "./ducks/home/homeSlice";
 
 export const store = configureStore({
    reducer: {
       authInfo: authInfoReducer,
-      edit: editReducer
+      edit: editReducer,
+      modal: modalReducer,
+      home: homeReducer
    },
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

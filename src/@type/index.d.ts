@@ -1,3 +1,11 @@
+declare module AxiosType {
+    interface ResponseType {
+        status: number;
+        code: number;
+        message: string;
+    }
+}
+
 declare module AuthType {
     interface Token {
         type: string;
@@ -145,4 +153,150 @@ declare module EditType {
         | "도움말";
 
     type modalType = "image" | "gender" | null;
+}
+
+declare module ModalType {
+    type ActivatedModalType =
+        | "unfollowing"
+        | "report"
+        | "articleMenu"
+        | "commentMenu"
+        | "shareWith"
+        | null;
+
+    interface ModalPositionProps {
+        top: number;
+        bottom: number;
+        left: number;
+    }
+
+    interface FetchMiniProfileProps extends ModalPositionProps {
+        memberUsername: string;
+    }
+    interface MiniProfileProps {
+        blocked: boolean;
+        blocking: boolean;
+        follower: boolean;
+        following: boolean;
+        hasStory: boolean;
+        followingMemberFollow: // 내가 팔로우 하는 사람 중에 이 유저를 팔로우하는 사람 대표 1명
+            [
+                {
+                    memberUsername: string;
+                },
+            ];
+        followingMemberFollowCount: number; // 위 member 제외 나머지 수
+        me: boolean;
+        memberFollowersCount: number; // 유저를 팔로우우하는 사람
+        memberFollowingsCount: number; // 유저가 팔로우하는 사람 전부
+        memberPostsCount: number; // 게시글 수
+        memberImage: {
+            imageUrl: string;
+            imageType: string;
+            imageName: string;
+            imageUUID: string;
+        };
+        memberName: string;
+        memberPosts: { postId: number; postImageUrl: string }[]; // string
+        memberUsername: string;
+        memberWebsite: null | string;
+    }
+
+    interface MiniProfileStateProps extends MiniProfileProps {
+        isLoading: boolean;
+        modalPosition: ModalPositionProps;
+    }
+
+    interface ModalStateProps {
+        activatedModal: ActivatedModalType;
+        memberUsername: string; // dlwlrma
+        memberImageUrl: string;
+        postId: number | null;
+        commentId: number | null;
+        miniProfile: MiniProfileStateProps | null;
+        isFollowing: boolean | null;
+        isOnMiniProfile: boolean;
+        isArticleAloneModalOn: boolean;
+        articleAloneModalPostId: number | null;
+    }
+}
+
+declare module HomeType {
+    type StoriesScrollPositionType = "left" | "right" | "center";
+    interface homeStateProps {
+        storiesScrollPosition: storiesScrollPositionType;
+        articles: PostType.ArticleStateProps[];
+        // location?
+        isLoading: boolean; // 더미 로딩
+        isExtraArticleLoading: boolean;
+        extraArticlesCount: number;
+        isAsyncError: boolean;
+        hoveredUser: {
+            avatarUrl: string;
+            verified: boolean;
+            isFollowing: boolean;
+            realName: string;
+            link: string;
+            followingUsernames: string[];
+            articlesNum: number;
+            followersNum: number;
+            followsNum: number;
+            recentImgs: {
+                src: string;
+                param: string;
+            }[]; // 최신 3개
+        } | null;
+        isCopiedNotification: boolean;
+    }
+}
+
+declare module PostType {
+    interface PostImgTagDTOProps {
+        id: number;
+        tag: {
+            username: string;
+            x: number;
+            y: number;
+        };
+    }
+
+    interface CommentType {
+        id: number;
+        commentLikeFlag: boolean;
+        commentLikesCount: number;
+        content: string;
+        hashtagsOfContent: string[];
+        member: CommonType.memberType;
+        mentionsOfContent: string[];
+        repliesCount: number;
+        replies?: CommentType[];
+        uploadDate: string;
+    }
+
+    interface ArticleProps {
+        followingMemberUsernameLikedPost: null | string; // 내가 팔로우한 사람 중에서 이 글을 좋아한 사람 있으면 보내줌
+        member: CommonType.memberType;
+        postBookmarkFlag: boolean; // 내가 북마크 했는지
+        postCommentsCount: number;
+        postContent: string;
+        postId: number;
+        postImages: CommonType.PostImageDTOProps[];
+        postLikeFlag: boolean; // 내가 좋아요 했는지
+        postLikesCount: number;
+        postUploadDate: string;
+        hashtagsOfContent: string[];
+        mentionsOfContent: string[];
+        likeOptionFlag: boolean; // 업로드한 사람만 좋아요 및 좋아요한 사람 확인 가능
+        commentOptionFlag: boolean; // 댓글 작성 가능 여부
+        following: boolean;
+        recentComments: CommentType[];
+    }
+
+    interface ArticleStateProps extends ArticleProps {
+        followLoading: boolean;
+    }
+
+    interface LargerArticleStateProps extends ArticleStateProps {
+        comments: CommentType[];
+    }
 }

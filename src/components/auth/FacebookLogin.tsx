@@ -42,13 +42,10 @@ export default function FacebookLogin({ bgColor, color }: UIType.ButtonProps) {
     const dispatch = useAppDispatch();
     const isLoading = useAppSelector( (state) => state.authInfo.isLoading );
     const windowLocationHref = process.env.REACT_APP_BACKEND_GITHUB_URL || '';
-    console.log("windowLocationHref: ", windowLocationHref);
 
     const submitButtonClickHandler = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         dispatch( authInfoActions.loading() );
-        // window.location.href = 'http://localhost.com:8080/care-home/oauth2/authorization/github';
-        // window.location.href = 'http://3.37.44.69:8080/care-home/oauth2/authorization/github';
         window.location.href = windowLocationHref;
     };
 
