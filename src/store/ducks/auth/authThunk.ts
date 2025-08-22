@@ -95,6 +95,8 @@ export const signIn = createAsyncThunk<AuthType.Token, SignInRequestType> (
     "auth/signIn",
     async (payload, ThunkOptions) => {
         try {
+            console.log("payload.email: " + payload.email);
+            console.log("payload.pass: " + payload.password);
             const {data: {data}} = await customAxios.post("/login", {
                 email: payload.email,
                 password: payload.password,

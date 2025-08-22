@@ -3,13 +3,15 @@ import { authInfoReducer } from "./ducks/auth/AuthInfoSlice";
 import { editReducer } from "./ducks/edit/editSlice";
 import { modalReducer } from "./ducks/modal/modalSlice";
 import { homeReducer } from "./ducks/home/homeSlice";
+import {profileReducer} from "./ducks/profile/profileSlice";
 
 export const store = configureStore({
    reducer: {
       authInfo: authInfoReducer,
       edit: editReducer,
       modal: modalReducer,
-      home: homeReducer
+      home: homeReducer,
+      profile: profileReducer
    },
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

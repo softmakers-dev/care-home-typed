@@ -1,3 +1,69 @@
+declare module Direct {
+    interface PostMessageDTO {
+        postId: number;
+        postImage: CommonType.ImageInfo;
+        postImageCount: number;
+        status: string;
+        uploader: AuthType.UserInfo;
+    }
+
+    interface MessageDTO {
+        messageId: number;
+        content: string | PostMessageDTO;
+        messageType: messageType;
+        messageDate: string;
+        sender: CommonType.memberType;
+        roomId: number;
+        senderImage: CommonType.ImageInfo;
+        likeMembers: CommonType.memberType[];
+    }
+
+    interface ChatItem {
+        roomId: number;
+        lastMessage: MessageDTO;
+        unreadFlag: boolean;
+        inviter: inviterProps;
+        members: memberProps[];
+        typing?: boolean;
+    }
+
+    interface inviterProps {
+        username: string;
+        name: string;
+        imageUrl: string;
+    }
+
+    interface memberProps {
+        username: string;
+        name: string;
+        imageUrl: string;
+    }
+
+    interface RoomsProps {
+        status: boolean;
+        chatRoomId: number;
+        inviter: inviterProps; // 초대한사람
+        members: memberProps[]; // 초대받은사람
+    }
+    type modalType =
+        | "deleteChat"
+        | "block"
+        | "report"
+        | "newChat"
+        | "convertAccount"
+        | "deleteAll"
+        | "deleteChatMessage"
+        | "likedMember"
+        | null;
+    type currentSectionViewType =
+        | "inbox"
+        | "detail"
+        | "chat"
+        | "requests"
+        | "requestsChat";
+    type messageType = "TEXT" | "POST";
+}
+
 declare module AxiosType {
     interface ResponseType {
         status: number;
@@ -299,4 +365,49 @@ declare module PostType {
     interface LargerArticleStateProps extends ArticleStateProps {
         comments: CommentType[];
     }
+}
+
+declare module Profile {
+    interface MemberProfileProps {
+        memberUsername: string;
+        memberName: string;
+        memberWebsite: string | null;
+        memberImage: CommonType.ImageInfo;
+        memberIntroduce: string | null;
+        memberPostsCount: number;
+        memberFollowingsCount: number;
+        memberFollowersCount: number;
+        followingMemberFollow: null;
+        blocking: boolean;
+        following: boolean;
+        follower: boolean;
+        blocked: boolean;
+        me: boolean;
+    }
+
+    interface PostType {
+        postId: number;
+        postImage: CommonType.PostImageDTOProps;
+        hasManyPostImages: boolean;
+        postCommentsCount: number;
+        postLikesCount: number;
+    }
+
+    interface personType {
+        // 팔로잉 팔로워 한명을 나타내는 타입입니다.
+        member: CommonType.memberType;
+        following: boolean;
+        follower: boolean;
+        me: boolean;
+    }
+
+    type modalType =
+        | "userAction"
+        | "setting"
+        | "follower"
+        | "unFollow"
+        | "cut"
+        | "block"
+        | null;
+    type currentCategoryType = "uploaded" | "tagged" | "saved";
 }

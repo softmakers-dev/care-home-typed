@@ -8,6 +8,7 @@ import ClientsPage from "./pages/main/Clients";
 import CareGiversPage from "./pages/main/CareGivers";
 import ErrorPage from "./pages/Error";
 import AuthenticationPage from "./pages/Authentication";
+import Profile from "./pages/profile/Profile";
 import { useAppSelector } from "./store/Hooks";
 import Edit from "./pages/Edit/Edit";
 
@@ -61,11 +62,11 @@ const Router = () => {
                             <Route path='caregivers' element={ <CareGiversPage /> }/>
                             <Route path='error' element={ <ErrorPage /> }/>
                             <Route path='accounts/edit' element={ <Edit /> } />
+                            <Route path='profile/:username' element={ <Profile /> }/>
                             <Route path='*' element={<Navigate to="/" replace />} />
                         </Route>
                     </Routes>
                 )}
-
             </BrowserRouter>
         </>
     );

@@ -2,10 +2,7 @@ import React, { JSX } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../../store/Hooks";
 import { logout } from '../../../store/ducks/auth/authThunk';
-import { ReactComponent as Profile } from "../../../assets/Svgs/header-nav-bar/profile.svg";
-import { ReactComponent as Store } from "../../../assets/Svgs/header-nav-bar/store.svg";
 import { ReactComponent as Setting } from "../../../assets/Svgs/header-nav-bar/setting.svg";
-import { ReactComponent as Change } from "../../../assets/Svgs/header-nav-bar/change.svg";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -90,10 +87,7 @@ export default function SubNav({
     };
 
     const optionData: optionType[] = [
-        { linkTo: `/profile/${username}`, text: `프로필`, svg: <Profile /> },
-        { text: `저장됨`, svg: <Store /> },
         { linkTo: `/accounts/edit`, text: `설정`, svg: <Setting /> },
-        { text: `계정전환`, svg: <Change /> },
     ];
 
     return (

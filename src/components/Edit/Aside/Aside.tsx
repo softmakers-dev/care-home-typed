@@ -7,13 +7,6 @@ import styled from "styled-components";
 const menus: EditType.menuType[] = [
     "프로필 편집",
     "비밀번호 변경",
-    "앱 및 웹사이트",
-    "이메일 및 SMS",
-    "푸시 알림",
-    "연락처 관리",
-    "개인정보 및 보안",
-    "로그인 활동",
-    "Instagram에서 보낸 이메일",
     "도움말",
 ];
 const Container = styled.div`
